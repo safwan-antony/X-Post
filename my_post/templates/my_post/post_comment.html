@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .comment-form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
+        .comments-section {
+            margin-top: 20px;
+        }
+        .comment {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .comment:last-child {
+            border-bottom: none;
+        }
+        .comment .username {
+            font-weight: bold;
+        }
+        .comment .text {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2><a href="{%url 'home'%}"> go back </a></h2>
+        <h1>Leave a Comment</h1>
+        <p> {{post.body}} </p>
+        <div class="comment-form">
+            <form method="POST" >
+                {%csrf_token%}
+            <textarea name="body" id="commentText" rows="4" placeholder="Write your comment here..."></textarea>
+           <button Submit Comment>send</button>
+           </form>
+        </div>
+        <div class="comments-section" id="commentsSection">
+            <h2>Comments</h2>
+            <!-- Comments will be dynamically added here -->
+             {%for comment in comment%}
+             <small> <a href="{%url 'account_profile' comment.user.id %}">@{{comment.user.username}}</a> - {{comment.created_at|timesince}}</small>
+             <p> {{comment.body}}
+                 <a href="{%url 'delete_comment' comment.id %}" class="btn btn-danger" name="delete" value="delete">delete</a>
+                 <a href="{%url 'edit_comment' comment.id %}" class="btn btn-primary" name="edit" value="update">edit</a> 
+            </p> 
+             {%endfor%}
+        </div>
+
+    </div>
+    
+    
+    
+    
+    
+           
+</html>

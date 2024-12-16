@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        .comment-form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .comment-form button:hover {
+            background-color: #0056b3;
+        }
+        .comments-section {
+            margin-top: 20px;
+        }
+        .comment {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .comment:last-child {
+            border-bottom: none;
+        }
+        .comment .username {
+            font-weight: bold;
+        }
+        .comment .text {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <h2><a href="{%url 'home'%}"> go back </a></h2>
+        <h1>edit your Comment</h1>
+    
+        <div class="comment-form">
+            <form method="POST" action="">
+                {%csrf_token%}
+            <input name="body" value="{{comment.body}}" class="form-control" id="commentText" rows="4" placeholder="Write your comment here...">
+           <button Submit Comment>update</button>
+           </form>
+        </div>
+      
+
+    </div>
+
+  <!--   <script>
+        function submitComment() {
+            const commentText = document.getElementById('commentText').value;
+            if (commentText.trim() === "") {
+                alert("Please enter a comment before submitting.");
+                return;
+            }
+
+            const commentsSection = document.getElementById('commentsSection');
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+
+            const username = document.createElement('div');
+            username.className = 'username';
+            username.textContent = "Anonymous"; // Placeholder for username, can be updated with a real user system.
+
+            const text = document.createElement('div');
+            text.className = 'text';
+            text.textContent = commentText;
+
+            commentDiv.appendChild(username);
+            commentDiv.appendChild(text);
+
+            commentsSection.appendChild(commentDiv);
+
+            // Clear the input field
+            document.getElementById('commentText').value = "";
+        }
+    </script> -->
+</body>
+</html>

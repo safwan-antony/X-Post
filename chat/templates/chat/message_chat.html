@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="chat-header">
+    <h2>Private Chat with {{ recipient.username }}</h2>
+</div>
+<div class="chat-body">
+   
+    
+    <div id="chat-log" class="chat-messages">
+        <!-- Messages will be dynamically appended here -->
+         {%for message in message_chat%}
+         -{{message.message}}
+         <br>
+         {%endfor%}
+    </div>
+
+</div>
+<form method="POST">
+    {%csrf_token%}
+<div class="chat-footer">
+    <input id="chat-message-input" name="message" type="text" placeholder="Type a message..." autocomplete="off">
+    <button type="submit" >Send</button>
+</div>
+</form>
+
+
+
+
+{% endblock %}

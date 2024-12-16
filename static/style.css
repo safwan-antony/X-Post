@@ -1,0 +1,342 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d0d0e;
+    padding: 10px 20px;
+    color: white;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+header nav ul li a:hover,
+header nav ul li .btn-primary {
+    background-color: white;
+    color: #1DA1F2;
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    width: 250px;
+    background-color: #fff;
+    color: #333;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border: 2px solid #1DA1F2;
+}
+
+.search-bar button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #1DA1F2;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    padding: 20px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 25%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile h3 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.profile p {
+    font-size: 14px;
+    color: #555;
+}
+
+.sidebar .menu {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar .menu li {
+    margin: 10px 0;
+}
+
+.sidebar .menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    display: block;
+}
+
+.sidebar .menu li a:hover {
+    color: #1DA1F2;
+}
+
+/* Feed Section */
+.feed {
+    width: 50%;
+    margin: 0 20px;
+}
+
+.new-tweet {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.new-tweet textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.new-tweet button {
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.new-tweet button:hover {
+    background-color: #0d8fce;
+}
+
+/* Tweets Section */
+.tweets .tweet {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+}
+
+.tweet-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.tweet-header h4 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.tweet-header h4 span {
+    color: #555;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.tweet-actions {
+    margin-top: 10px;
+}
+
+.tweet-actions button {
+    background: none;
+    border: none;
+    color: #1DA1F2;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.tweet-actions button:hover {
+    text-decoration: underline;
+}
+
+/* Trending Section */
+.trending {
+    width: 25%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.trending h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.trending ul {
+    list-style: none;
+}
+
+.trending ul li {
+    margin-bottom: 10px;
+}
+
+.trending ul li a {
+    text-decoration: none;
+    color: #1DA1F2;
+    font-weight: 500;
+}
+
+.trending ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+/* Profile Picture Styles */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #1DA1F2; /* Blue border for emphasis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for a floating effect */
+    object-fit: cover; /* Ensures the image fits perfectly */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth animation on hover */
+}
+
+.profile-pic:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+/* Tweet Profile Picture Styles */
+.tweet-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ccc; /* Subtle border for definition */
+    object-fit: cover; /* Ensures the image fits the circle */
+    margin-right: 10px; /* Space between the image and tweet content */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth animations on hover */
+}
+
+.tweet-pic:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+    border-color: #1DA1F2; /* Changes border color to primary on hover */
+}
+
+.tweet-media {
+    margin-top: 10px;
+}
+.tweet-image {
+    max-width: 100%;
+    border-radius: 10px;
+}
+.tweet-file {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+/* Container for media content */
+.tweet-media {
+    margin-top: 10px;
+    text-align: center; /* Center the image */
+}
+
+/* Image styling */
+/* Image styling */
+.tweet-image {
+    width: 100%; /* Full width of the container */
+    max-width: 500px; /* Limit the maximum width */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-top: 10px; /* Space above the image */
+    object-fit: cover; /* Ensure the image fills the container proportionally */
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .tweet-image {
+        max-width: 90%; /* Reduce image width for smaller screens */
+    }
+}
+.tweet-image {
+    width: 300px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Crop and scale the image to fit */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

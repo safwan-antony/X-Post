@@ -1,0 +1,22 @@
+<header>
+    <div class="logo">X-Post</div>
+    <nav>
+        <ul>
+            <li><a href="{%url 'home'%}">Home</a></li>
+            <!-- <li><a href="#">Explore</a></li> -->
+            <!-- <li><a href="#">Notifications</a></li> -->
+            <li><a href="{%url 'groop_rooms'%}">Rooms</a></li>
+            <!-- <li><a href="#" class="btn-primary" style="color:black;">Tweet</a></li> -->
+            <li><a href="{%url 'account_logout'%}" >logout</a></li>
+
+        </ul>
+        
+    </nav>
+    <div class="search-bar">
+        <form method="GET" action="">
+            <input type="text" name="q" placeholder="Search..." required>
+            <button type="submit">🔍</button>
+        
+        </form>
+    </div>
+</header>

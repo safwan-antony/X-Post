@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    {%include 'my_post/head.html'%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} {%endblock%} Chat-App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://tailwindcss.com/docs/installation"></script>
+  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Twitter-Like Design</title>
+        <link rel="stylesheet" href="{%static 'style.css'%}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        .chat-message {
+            height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<div class="p-10 lg:p-20 text-center"> 
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <h1 class="text-3xl lg:text-6xl text-black"> join a Room or create your own room <a style="color: aqua;" href="{%url 'create_room'%}">create</a></h1>
+<small>({{rooms_count}})room availible</small>
+
+</div>
+<div class="w-full flex flex-wrap items-center">
+    <!-- room loops -->
+       {%for rooms in groop_rooms%}
+    <div class="w-full lg:w-1/4 px-3 py-3">
+        <div class="p-4 bg-white rounded-xl shadow-md text-center">
+            <h2 class="mb-5 text-2xl font-semibold">{{rooms.name}}</h2>
+            <p>#{{rooms.slug}}</p>
+            <br>
+            <p>  <a href="{%url 'room_chat' rooms.slug%}" class="px-5 py-3 bg-blue-500 text-white rounded-xl">Join Room</a> </p>
+            <br>
+            <br>
+            <small>create by <a href="{%url 'account_profile' rooms.owner.id%}">@{{rooms.owner.username}} </a> </small>
+        </div>
+    </div>
+      {%endfor%}
+   
+       
+  <!-- end room loops -->
+
+</div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+
+<head>
+    {%include 'my_post/head.html'%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} {%endblock%} Chat-App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://tailwindcss.com/docs/installation"></script>
+  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Twitter-Like Design</title>
+        <link rel="stylesheet" href="{%static 'style.css'%}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        .chat-message {
+            height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<head
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create or Join Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">    
+        <h1>Create a Chat Room</h1>
+        <form id="room-form" method="POST" action="">
+            {%csrf_token%}
+            <label for="room-name">Room Name:</label>
+            <input id="room-name" type="text" name="room_name" placeholder="Enter room name" required>
+            <label for="room-name">hashtag:</label>
+            <input id="room-name" type="text" name="room_slug" placeholder="Enter room hashtag" required>
+
+            <button type="submit">Enter Room</button>
+        </form>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <link rel="stylesheet" href="{% static 'ustyle.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+   {%include 'my_post/head.html'%}
+
+    <main> 
+        <section class="profile-header">
+            <div class="profile-info">
+                <div class="profile-pic-container">
+                    {% if user.profile_pic %}
+                    <img src="{{ user.profile_pic.url }}" alt="Profile Picture" class="profile-pic">
+                    {% else %}
+                    <img src="{% static 'avatar.jpg' %}" alt="Profile Picture" class="profile-pic">
+                    {% endif %}
+                </div>
+                <div class="profile-details">
+                    <h1>{{ user.username }}</h1>
+                    <p>@{{ user.username }}</p>
+                    <p>{{ user.bio }}</p>
+                    {%if request.user == user%}
+                    <button  class="btn-primary"><a href="{% url 'account_edit_profile' user.id %}">Edit Profile </a> </button>
+                    {%else%}
+                    <button style="background-color: crimson;" class="btn-primary" ><a style="color: antiquewhite;" href="{%url 'message_chat' user.id%}">Send message </a> </button>
+
+                    {%endif%}
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-feed">
+            <h3>Posts</h3>
+            <form method="POST" >
+                {%csrf_token%}
+            <div class="tweets" >
+                <!-- Placeholder for user tweets -->
+                {% for tweet in post %}
+                <div class="tweet" id="{{tweet.id}}">
+                    <div class="tweet-header">
+                        {% if tweet.user.profile_pic %}
+                        <img src="{{ tweet.user.profile_pic.url }}" alt="User" class="tweet-pic">
+                        {% else %}
+                        <img src="{% static 'avatar.jpg' %}" alt="User" class="tweet-pic">
+                        {% endif %}
+                        <div>
+                            <h4>{{ tweet.user.username }} <span>@{{ tweet.user.username }} · {{ tweet.created_at }}</span></h4>
+                            <p>{{ tweet.body }}</p>
+                            {% if tweet.file_post %}
+                                <div class="tweet-media">
+                                    <img src="{{ tweet.file_post.url }}" alt="Tweet Media" class="tweet-image">
+                                </div>
+                                {% endif %}
+                        </div>
+                    </div>
+                    <div class="tweet-actions">
+                        <!-- <button>❤️ Like</button> -->
+                        <button><a href="{% url 'comment' tweet.id %}"> 💬 Comment </a></button>
+                        {%if request.user == tweet.user%}
+                        
+                            <a href="{%url 'delete' tweet.id%}" style="color: darkred;">delete</a>
+                      
+                        {%endif%}
+                        
+                    </div>
+                </div>
+                {% empty %}
+                <p>No posts yet.</p>
+                {% endfor %}
+            </div>
+        </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 X-Post. All rights reserved.</p>
+    </footer>
+</body>
+</html>

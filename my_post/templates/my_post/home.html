@@ -1,0 +1,138 @@
+
+ <!DOCTYPE html>
+ {%load static%}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Twitter-Like Design</title>
+        <link rel="stylesheet" href="{%static 'style.css'%}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+     {%include 'my_post/head.html'%}
+        <main>
+            <aside class="sidebar">
+                <div class="profile">
+                    {%if request.user.profile_pic%}
+                    <img src="{{request.user.profile_pic.url}}" alt="Profile Picture" class="profile-pic">
+                    {%else%}
+                    <img src="{%static 'avatar.jpg'%}" alt="Profile Picture" class="profile-pic">
+                    {%endif%}
+                    <h3><a href="{%url 'account_profile' user.id%}">{{request.user.username}} </a> </h3>
+                    <p>@{{request.user.username}}</p>
+                    <ul class="menu">
+                        <li><a href="{%url 'account_profile' user.id%}">My Profile</a></li>
+                        <li><a href="#">My Rooms</a></li>
+                        <li><a href="{%url 'account_profile_settings'%}">Settings</a></li>
+                    </ul>
+                </div>
+
+            </aside>
+         
+               
+            <section class="feed">
+                {% if messages %}
+                <ul class="messages">
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <div>
+                    {% for message in messages %}
+                   
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+             
+                    {% endfor %}
+            
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            
+                    </div>
+            
+                </ul>
+                {% endif %}
+             
+                <div class="new-tweet">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" name="body" placeholder="What's happening?">
+                        <input class="form-control" type="file" name="file" id="formFile">
+                        <button type="submit" class="btn-primary">Tweet</button>
+                    </form>
+                    
+                </div>
+              
+               
+                {%for file_post in post%}
+                <div class="tweets">
+                    <div class="tweet" id="tweet1">
+                        <div class="tweet-header">
+                            <div class="tweet-header">{%if file_post.user.profile_pic%}
+                                <img src="{{file_post.user.profile_pic.url}}"alt="User" class="tweet-pic">
+                                {%else%}
+                                <img src="{%static 'avatar.jpg'%}" alt="User" class="tweet-pic">
+                                {%endif%}
+                           
+                            <div class="card bg-dark text-white">
+                                <h4>
+                                    <a href="{% url 'account_profile' file_post.user.id %}">
+                                        {{ file_post.user.username }}
+                                    </a>
+                                    <span>@{{ file_post.user.username }} {{ file_post.created_at|timesince }} ago</span>
+                                </h4>
+                                {% if file_post.file_post %}
+                                <div class="tweet-media">
+                                    <img src="{{ file_post.file_post.url }}" alt="Tweet Media" class="tweet-image">
+                                </div>
+                                {% endif %}
+                                <div class="card-img-overlay">
+                                    <p class="card-text">{{ file_post.body }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tweet-actions">
+                            <button><a href="{% url 'comment' file_post.id %}">💬 Comment</a></button>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                        
+                           
+                {%endfor%}
+               
+            </section>
+            
+            
+            <aside class="trending"> 
+                <h3>Users</h3>
+                {%for participants in participants%}
+                <ul>
+                   
+                    <li><a href="{%url 'account_profile' participants.id%}">@{{participants.username}}</a></li>
+                    <hr>
+                </ul>
+                {%endfor%}
+            
+            </aside>
+        </main>
+        <footer>
+            <p>&copy; 2024 X-Post. All rights reserved.</p>
+        </footer>
+    </body>
+    </html>
+    
+<script>
+// script.js
+document.querySelector('.new-tweet button').addEventListener('click', function() {
+    const tweetText = document.querySelector('.new-tweet textarea').value;
+    if (tweetText.trim() !== "") {
+        const tweet = document.createElement('div');
+        tweet.classList.add('tweet');
+        tweet.innerHTML = `<h4>Username</h4><p>${tweetText}</p>`;
+        document.querySelector('.tweets').prepend(tweet);
+        document.querySelector('.new-tweet textarea').value = "";
+    }
+});
+
+</script>
